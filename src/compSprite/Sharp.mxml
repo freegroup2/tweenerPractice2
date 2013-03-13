@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300">
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
-	</fx:Declarations>
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="init()">
+	<fx:Script>
+		<![CDATA[			
+			import flash.display.CapsStyle;
+			import flash.display.JointStyle;
+			import flash.display.LineScaleMode;
+			import flash.display.Shape;
+			import flash.display.Sprite;
+			import flash.text.TextField;
+			
+			public var trapezoid:Shape = new Shape();
+			public var color:uint = 0x000000;
+
+			public function init():void
+			{
+				trapezoid.graphics.lineStyle(10, color, 1, false, LineScaleMode.VERTICAL,CapsStyle.NONE, JointStyle.MITER, 10);
+				trapezoid.graphics.lineTo(0, 50);
+				trapezoid.graphics.lineTo(120, 50);
+				trapezoid.graphics.lineTo(120, 0);
+				trapezoid.graphics.lineTo(0, 0);
+				con.addChild(trapezoid);
+			}
+		]]>
+	</fx:Script>
+	<s:SpriteVisualElement id="con" />
 </s:Group>

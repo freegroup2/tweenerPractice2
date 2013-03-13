@@ -46,8 +46,8 @@
 		]]>
 	</fx:Script>
 	<s:Button id="myButton" x="564" y="200" click="tweenersStop(event)" label="Stop"/>
-	<compSprite:container id="con1" pointX="100" pointY="100" color="0xFFD700" number="1"/>
-	<compSprite:container id="con2" pointX="300" pointY="100" color="0xFFBBFF" number="2"/>
-	<compSprite:container id="con3" pointX="100" pointY="300" color="0xAADDEE" number="3"/>
-	<compSprite:container id="con4" pointX="300" pointY="300" color="0x556677" number="4"/>
+	<compSprite:container id="con1" x="100" y="100" color="0xFFD700" number="1"/>
+	<compSprite:container id="con2" x="300" y="100" color="0xFFBBFF" number="2"/>
+	<compSprite:container id="con3" x="100" y="300" color="0xAADDEE" number="3"/>
+	<compSprite:container id="con4" x="300" y="300" color="0x556677" number="4"/>
 </s:Application>

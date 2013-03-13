@@ -2,7 +2,7 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300" 
-		 initialize="init(con)" xmlns:compSprite="compSprite.*">
+		 creationComplete="init()" xmlns:compSprite="compSprite.*">
 	<fx:Script>
 		<![CDATA[			
 			import flash.display.CapsStyle;
@@ -11,29 +11,18 @@
 			import flash.display.Shape;
 			import flash.display.Sprite;
 			import flash.text.TextField;
-			
-			public var pointX:int = 100;
-			public var pointY:int = 100;
-			public var color:uint = 0x000000;
-			public var number:String = "default";
-			public function init(target:Sprite):void
+							
+			public var number:int = 5;//想辦法讓下面的label給接上去
+			public var color:uint = 0xFF0000
+			public function init():void
 			{
-//				var num:TextField = new TextField();
-//				var trapezoid:Shape = new Shape();    
-				target.x = pointX;
-				target.y = pointY;
-				target.addChild(trapezoid);
-				trapezoid.graphics.lineStyle(10, color, 1, false, LineScaleMode.VERTICAL,CapsStyle.NONE, JointStyle.MITER, 10);
-				trapezoid.graphics.lineTo(0, 50);
-				trapezoid.graphics.lineTo(120, 50);
-				trapezoid.graphics.lineTo(120, 0);
-				trapezoid.graphics.lineTo(0, 0); 
+
 			}
 		]]>
 	</fx:Script>
 	<s:layout>
 		<s:HorizontalLayout/>
 	</s:layout>
-	<s:SpriteVisualElement id="con"/>
-	<s:Label text="1"/>
+	<s:Label text="{this.number}"/>
+	<compSprite:Sharp color="{this.color}"/>
 </s:Group>
