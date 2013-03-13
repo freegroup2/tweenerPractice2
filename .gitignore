@@ -3,4 +3,5 @@ bin-debug
 .actionScriptProperties
 .flexProperties
 .project
-.settings
+.setting
+src/newTest.mxml
