@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   minWidth="955" 
+			   minHeight="600" 
+			   initialize="init()">
+	<fx:Script>
+		<![CDATA[
+			import caurina.transitions.Tweener;
+			import caurina.transitions.properties.ColorShortcuts;			
+			import flash.display.CapsStyle;
+			import flash.display.JointStyle;
+			import flash.display.LineScaleMode;
+			import flash.display.Shape;
+			import flash.display.Sprite;
+			import flash.events.MouseEvent;
+			import flash.geom.Point;
+			import flash.text.TextField;
+			
+			private var container1:Sprite;
+			private var container2:Sprite;
+			private var container3:Sprite;
+			private var container4:Sprite;
+
+			public function init():void
+			{
+				ColorShortcuts.init();
+				
+				container1 = new Sprite();
+				container2 = new Sprite();
+				container3 = new Sprite();
+				container4 = new Sprite();
+				createShape(container1,100,100,0xFFD700,"1");
+				createShape(container2,300,100,0xFFBBFF,"2");
+				createShape(container3,100,300,0xAADDEE,"3");
+				createShape(container4,300,300,0x556677,"4");
+				con1.addChild(container1);
+				con1.addChild(container2);
+				con1.addChild(container3);
+				con1.addChild(container4);
+				Tweener.addTween(container1, {x:200, y:200, time:4, onComplete:rotateTweener});
+			}
+			public function createShape(target:Sprite, pointX:int, pointY:int, color:uint, number:String):void
+			{
+				
+				var num:TextField = new TextField();
+				var trapezoid:Shape = new Shape();    
+				target.x = pointX;
+				target.y = pointY;
+				num.text = number;
+				target.addChild(trapezoid);
+				target.addChild(num);
+				trapezoid.graphics.lineStyle(10, color, 1, false, LineScaleMode.VERTICAL,CapsStyle.NONE, JointStyle.MITER, 10);
+				trapezoid.graphics.lineTo(0, 50);
+				trapezoid.graphics.lineTo(120, 50);
+				trapezoid.graphics.lineTo(120, 0);
+				trapezoid.graphics.lineTo(0, 0); 
+			}
+			public function rotateTweener():void
+			{
+				//開始旋轉第二個框框
+				Tweener.addTween(container2, {rotation:360, time:3, onComplete:colorChange});
+			}
+			public function colorChange():void
+			{
+				//開始變色第三個框框
+				Tweener.addTween(container3, {_color:0xffdd33, time:5, onComplete:bounce});
+			}
+			public function bounce():void
+			{
+				//開始彈跳第四個框框
+				Tweener.addTween(container4, {x: 300, transition: "linear", time: 1});
+				Tweener.addTween(container4, {y: -70, transition: "easeOutQuad", time: 0.5});
+				Tweener.addTween(container4, {y: 300, transition: "easeInQuad", time: 0.5, delay: 0.5});		
+			}
+			public function tweenersStop(event:MouseEvent):void
+			{
+				Tweener.pauseAllTweens();
+			}
+		]]>
+	</fx:Script>
+	<s:Button id="myButton" x="564" y="200" click="tweenersStop(event)" label="Stop"/>
+	<s:SpriteVisualElement id="con1"/>
+</s:Application>
