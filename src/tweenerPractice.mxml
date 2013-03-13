@@ -2,9 +2,10 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
-			   minWidth="955" 
-			   minHeight="600" 
-			   initialize="init()">
+			   xmlns:compSprite="compSprite.*"
+			   minWidth="1024" 
+			   minHeight="1000" 
+			   creationComplete="init()">
 	<fx:Script>
 		<![CDATA[
 			import caurina.transitions.Tweener;
@@ -14,35 +15,12 @@
 			import flash.display.LineScaleMode;
 			import flash.display.Shape;
 			import flash.display.Sprite;
-			import flash.events.MouseEvent;
-			import flash.geom.Point;
 			import flash.text.TextField;
 			
 			public function init():void
 			{
 				ColorShortcuts.init();
-				
-				createShape(con1,100,100,0xFFD700,"1");
-				createShape(con2,300,100,0xFFBBFF,"2");
-				createShape(con3,100,300,0xAADDEE,"3");
-				createShape(con4,300,300,0x556677,"4");
 				Tweener.addTween(con1, {x:200, y:200, time:4, onComplete:rotateTweener});
-			}
-			public function createShape(target:Sprite, pointX:int, pointY:int, color:uint, number:String):void
-			{
-				
-				var num:TextField = new TextField();
-				var trapezoid:Shape = new Shape();    
-				target.x = pointX;
-				target.y = pointY;
-				num.text = number;
-				target.addChild(trapezoid);
-				target.addChild(num);
-				trapezoid.graphics.lineStyle(10, color, 1, false, LineScaleMode.VERTICAL,CapsStyle.NONE, JointStyle.MITER, 10);
-				trapezoid.graphics.lineTo(0, 50);
-				trapezoid.graphics.lineTo(120, 50);
-				trapezoid.graphics.lineTo(120, 0);
-				trapezoid.graphics.lineTo(0, 0); 
 			}
 			public function rotateTweener():void
 			{
@@ -68,9 +46,8 @@
 		]]>
 	</fx:Script>
 	<s:Button id="myButton" x="564" y="200" click="tweenersStop(event)" label="Stop"/>
-	<s:SpriteVisualElement id="con1"/>
-	<s:SpriteVisualElement id="con2"/>
-	<s:SpriteVisualElement id="con3"/>
-	<s:SpriteVisualElement id="con4"/>
+	<compSprite:container id="con1" pointX="100" pointY="100" color="0xFFD700" number="1"/>
+	<compSprite:container id="con2" pointX="300" pointY="100" color="0xFFBBFF" number="2"/>
+	<compSprite:container id="con3" pointX="100" pointY="300" color="0xAADDEE" number="3"/>
+	<compSprite:container id="con4" pointX="300" pointY="300" color="0x556677" number="4"/>
 </s:Application>
-
